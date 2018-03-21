@@ -1,0 +1,42 @@
+
+<h2>Welcome to The Wedding Planner @ViewBag.FirstName</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Wedding</td>
+            <td>Date</td>
+            <td>Guest</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wedding in @ViewBag.Weddings)
+        {
+            <tr>
+                <td><a asp-action="Wedding" asp-controller="Dashboard" asp-route-WeddingId="@wedding["WeddingId"]">@wedding["WedderOne"] &amp; @wedding["WedderTwo"]</a></td>
+                <td>@wedding["WeddingDate"].ToString("MMM d yyyy")</td>
+                <td>@wedding["RSVPs"]</td>
+                @if (wedding["Owned"])
+                {
+                    <td><a asp-action="Delete" asp-controller="Dashboard" asp-route-WeddingId="@wedding["WeddingId"]">Delete</a></td>
+                }
+                else if (wedding["RSVPed"])
+                {
+                    <td><a asp-action="UnRSVP" asp-controller="Dashboard" asp-route-WeddingId="@wedding["WeddingId"]">Un-RSVP</a></td>
+                }
+                else
+                {
+                    <td><a asp-action="Reserve" asp-controller="Dashboard" asp-route-WeddingId="@wedding["WeddingId"]">RSVP</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+<button><a asp-action="WeddingForm" asp-controller="Dashboard">Create Wedding</a></button>
+<button><a href="logout">Logout</a></button>

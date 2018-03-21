@@ -1,0 +1,15 @@
+
+<h3>Let us be the first to congratulate @ViewBag.currWedding.WedderOne and @ViewBag.currWedding.WedderTwo</h3><br>
+<h4>Date: @ViewBag.currWedding.WeddingDate</h4><br>
+
+Guests:
+<ul>
+    @foreach (var drunk in @ViewBag.currWedding.RSVPs)
+    {
+        <li>@drunk.User.FirstName @drunk.User.LastName</li>
+    }
+</ul>
+
+<button><a asp-action="WeddingForm" asp-controller="Dashboard">Create Wedding</a></button>
+<button><a href="logout">Logout</a></button>
+<button><a asp-action="Success" asp-controller="Dashboard">Go to Dashboard</a></button>
